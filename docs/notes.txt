@@ -1,0 +1,18 @@
+
+simple Pomodoro timer
+
+a label that will display the timer time
+a 25 button
+a 15 button
+a 5 button
+
+and, eventually
+some sort of display of what has transpired
+might display, 
+ start/stop time
+ type: pomodoro, 5, 15
+ interruption
+ description/task for pomodoro
+ estimate vs actual pomodoro for task
+ count of pomodoros completed
+
