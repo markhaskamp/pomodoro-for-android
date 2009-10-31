@@ -1,8 +1,8 @@
 body
 {
-	background-color:#111;
-	/* color:#bbb; */
-	color: cyan;
+	background-color:#404040;
+	color:#b0b0b0;
+	/* color: cyan; */
 	font-family:sans-serif;
 }
 
@@ -11,7 +11,20 @@ h1,h2
 	color:#900;
 }
 
-p
-{
-	margin-bottom:20px;
+
+#buttonContainer {
+  float: right;
+}
+
+#timerDisplay {
+		background-color: #222222;
+    border-right: solid 1px white;
+    border-bottom: solid 1px white;
+    border-top: solid 1px black;
+    border-left: solid 1px black;
+    font-size: 48px;
+		padding: 8px;
+    margin-left: 25px;
+    width: 150px;
+    text-align: center;
 }
