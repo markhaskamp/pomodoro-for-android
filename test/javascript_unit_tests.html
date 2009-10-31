@@ -2,14 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko">
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-<title>JSSpec results</title>
+<title>JSSpec tests for yap (Yet Another Pomodoro)</title>
 
 <link rel="stylesheet" type="text/css" href="jsspec/JSSpec.css" />
 <script type="text/javascript" src="jsspec/diff_match_patch.js"></script>
 <script type="text/javascript" src="jsspec/JSSpec.js"></script>
 
 <script type="text/javascript" src="../Resources/javascript/prototype.js"></script>
-<!-- script type="text/javascript" src="../Resources/javascript/EventAggregator.js"></script -->
 <script type="text/javascript" src="../Resources/javascript/index.js"></script>
 
 <script type="text/javascript">// <![CDATA[
@@ -22,16 +21,57 @@ describe ('foo', {
 
 describe ('yap', {
 
-  "initTimer_sets_minutesAnchor_to_total_minutes_of_countdown": function() {
-    initTimer(25);
-    value_of(minutesAnchor).should_be(25);
+  "PomodoroTimer - 'new' receives minutes and seconds - sets goalTimeInTotalSeconds": function() {
+    var pt = new PomodoroTimer(25, 0);
+    value_of(pt.goalTimeInTotalSeconds).should_be(1500);
+
+    var pt = new PomodoroTimer(15, 0);
+    value_of(pt.goalTimeInTotalSeconds).should_be(900);
+
+    var pt = new PomodoroTimer(5, 0);
+    value_of(pt.goalTimeInTotalSeconds).should_be(300);
+
+    var pt = new PomodoroTimer(0, 5);
+    value_of(pt.goalTimeInTotalSeconds).should_be(5);
   }
 
-  ,"initTimer_sets_secondsAnchor_to_seconds_since_the_epoch": function() {
-    value_of(secondsAnchor).should_be(undefined);
-    initTimer(25);
-    value_of(secondsAnchor > 0).should_be(true);
+  ,"PomodoroTimer - 'new' - sets startSecondsSnapshot": function() {
+    var epochSeconds = new Date().getTime();
+
+    var pt = new PomodoroTimer(0, 5);
+    value_of(pt.startSecondsSnapshot >= epochSeconds).should_be(true);
   }
+
+  ,"PomodoroTimer = 'can explicitly reset startSecondsSnapshot": function() {
+    var pt = new PomodoroTimer(0, 10);
+    var foo = pt.startSecondsSnapshot;
+    pt.startSecondsSnapshot -= 5;
+
+    value_of(foo - pt.startSecondsSnapshot).should_be(5);
+  }
+
+  ,"PomodoroTimer - getElapsedMinutesAndSeconds - 5 seconds elapsed ": function() {
+    var pt = new PomodoroTimer(0, 10);
+    pt.startSecondsSnapshot -= 5000;   // set the time back 5 seconds
+
+    var j = pt.getElapsedMinutesAndSeconds(new Date().getTime());
+    value_of(j.elapsedEpochSeconds).should_be(5);
+    value_of(j.pomodoroSecondsRemaining).should_be(5);
+    value_of(j.displayMinutes).should_be(0);
+    value_of(j.displaySeconds).should_be(5);
+  }
+
+  ,"PomodoroTimer - getElapsedMinutesAndSeconds - 75 seconds elapsed ": function() {
+    var pt = new PomodoroTimer(5, 0);
+    pt.startSecondsSnapshot -= 75000;   // set the time back 75 seconds
+
+    var j = pt.getElapsedMinutesAndSeconds(new Date().getTime());
+    value_of(j.elapsedEpochSeconds).should_be(75);
+    value_of(j.pomodoroSecondsRemaining).should_be(225);
+    value_of(j.displayMinutes).should_be(3);
+    value_of(j.displaySeconds).should_be(45);
+  }
+
 
 });
 

@@ -1,48 +1,70 @@
 var minutesAnchor;
 var secondsAnchor;
 var anchorTimeInTotalSeconds;
-var pomodoroTimerDisplay;
+var pomodoroDisplay;
+var pomodoroTimer;
 
-var Pomodoro = Class.create({
+var PomodoroTimer = Class.create({
+				initialize: function(minutes, seconds) {
+						this.startNewGoal(minutes, seconds)
+				}
+
+				,startNewGoal: function(minutes, seconds) {
+						this.goalTimeInTotalSeconds = minutes * 60 + seconds;
+						this.startSecondsSnapshot = new Date().getTime();
+		    }
+
+				,getElapsedMinutesAndSeconds: function(epochMicroSeconds) {
+						elapsedEpochSeconds = ((epochMicroSeconds - this.startSecondsSnapshot) / 1000).round()
+						pomodoroSecondsRemaining = this.goalTimeInTotalSeconds - elapsedEpochSeconds;
+						displayMinutes = (pomodoroSecondsRemaining / 60).floor();
+						displaySeconds = pomodoroSecondsRemaining % 60;
+
+						return {"epochMicroSeconds": epochMicroSeconds,
+                    "elapsedEpochSeconds": elapsedEpochSeconds, 
+                    "pomodoroSecondsRemaining": pomodoroSecondsRemaining, 
+                    "displayMinutes": displayMinutes, 
+                    "displaySeconds": displaySeconds};
+				}
+		});
+
+var PomodoroDisplay = Class.create({
 				displayTime: function(m, s) {
 						var tpl = new Template('#{minutes}:#{seconds}');
 						return tpl.evaluate({ minutes: displayMinutes.floor(), seconds: displaySeconds });
 				}
 
 				, timeExpired: function (minutesRemaining, secondsRemaining) {
-						return (minutesRemaining == 0 && secondsRemaining == 0);
+						if (minutesRemaining < 0 || secondsRemaining < 0) {
+								return true;
+						}
+						else {
+								return (minutesRemaining == 0 && secondsRemaining <= 0);
+						}
 				}
 
 		});
 
-function updateTimerDisplay(pe) {
-		currentSeconds = new Date().getTime();
+function timeIntervalEvent(pe) {
+		currentEpochSeconds = new Date().getTime();
 
-		pomodoroElapsedSeconds = ((currentSeconds - secondsAnchor) / 1000).round();
-		pomodoroDisplaySeconds = anchorTimeInTotalSeconds - pomodoroElapsedSeconds;
-		displayMinutes = pomodoroDisplaySeconds / 60;
-    displaySeconds = pomodoroDisplaySeconds % 60;
+		var j = pomodoroTimer.getElapsedMinutesAndSeconds(currentEpochSeconds);
 
-    $('timerDisplay').innerHTML = pomodoroTimerDisplay.displayTime(displayMinutes, displaySeconds);
+    $('timerDisplay').innerHTML = pomodoroDisplay.displayTime(j.displayMinutes, j.displaySeconds);
 
-		if (pomodoroTimerDisplay.timeExpired(displayMinutes, displaySeconds)) {
+		if (pomodoroDisplay.timeExpired(j.displayMinutes, j.displaySeconds)) {
 				$('timerDisplay').innerHTML = 'stop';
 				pe.stop();
 		}
 }
 
-function initTimer(seconds) {
-		anchorTimeInTotalSeconds = seconds;
-		secondsAnchor = new Date().getTime();
-}
-
 function startTimer(e, minutes, seconds) {
-    initTimer((minutes * 60) + seconds);
-		new PeriodicalExecuter(updateTimerDisplay, 1);
+		pomodoroTimer = new PomodoroTimer(minutes, seconds);
+		new PeriodicalExecuter(timeIntervalEvent, 1);
 }
 
 document.observe('dom:loaded', function() {
-				pomodoroTimerDisplay = new Pomodoro();
+				pomodoroDisplay = new PomodoroDisplay();
 
 				$('btnPomodoro25').observe('click', startTimer.bindAsEventListener(this, 25, 0));
 				$('btnPomodoro15').observe('click', startTimer.bindAsEventListener(this, 15, 0));
