@@ -1,7 +1,8 @@
 body
 {
 	background-color:#111;
-	color:#bbb;
+	/* color:#bbb; */
+	color: cyan;
 	font-family:sans-serif;
 }
 

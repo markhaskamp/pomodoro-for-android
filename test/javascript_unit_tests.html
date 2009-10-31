@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<title>JSSpec results</title>
+
+<link rel="stylesheet" type="text/css" href="jsspec/JSSpec.css" />
+<script type="text/javascript" src="jsspec/diff_match_patch.js"></script>
+<script type="text/javascript" src="jsspec/JSSpec.js"></script>
+
+<script type="text/javascript" src="../Resources/javascript/prototype.js"></script>
+<!-- script type="text/javascript" src="../Resources/javascript/EventAggregator.js"></script -->
+<script type="text/javascript" src="../Resources/javascript/index.js"></script>
+
+<script type="text/javascript">// <![CDATA[
+
+describe ('foo', {
+  "isTrue": function() {
+    value_of(1 == 1).should_be(true);
+  }
+});
+
+describe ('yap', {
+
+  "initTimer_sets_minutesAnchor_to_total_minutes_of_countdown": function() {
+    initTimer(25);
+    value_of(minutesAnchor).should_be(25);
+  }
+
+  ,"initTimer_sets_secondsAnchor_to_seconds_since_the_epoch": function() {
+    value_of(secondsAnchor).should_be(undefined);
+    initTimer(25);
+    value_of(secondsAnchor > 0).should_be(true);
+  }
+
+});
+
+
+// ]]></script>
+</head>
+<body><div style="display:none;"><p>A</p><p>B</p></div></body>
+</html>
