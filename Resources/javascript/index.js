@@ -1,8 +1,6 @@
-var minutesAnchor;
-var secondsAnchor;
-var anchorTimeInTotalSeconds;
 var pomodoroDisplay;
 var pomodoroTimer;
+var pomodoroData
 
 var PomodoroTimer = Class.create({
 				initialize: function(minutes, seconds) {
@@ -63,12 +61,16 @@ function timeIntervalEvent(pe) {
 		}
 }
 
-function startTimer(e, minutes, seconds) {
+function startTimer(e, timerType) {
+		Titanium.API.log("debug", "startTimer. Enter.");
+		Titanium.API.trace("startTimer. Enter.");
 		var ele = Event.element(e);
 
 		setStylesForClickedButton(ele);
-		ele.addClassName('btnPomodoroActive');
-		ele.removeClassName('btnPomodoro');
+
+		seconds = 0;
+		minutes = pomodoroData.getMinutes(timerType);
+		// $('debugger').innerHTML = minutes;
 
 		pomodoroTimer = new PomodoroTimer(minutes, seconds);
 		new PeriodicalExecuter(timeIntervalEvent, 1);
@@ -87,11 +89,26 @@ function setStylesForClickedButton(ele) {
 
 document.observe('dom:loaded', function() {
 				pomodoroDisplay = new PomodoroDisplay();
+				Titanium.API.debug('hello world');
 
-				$('btnPomodoroPomodoro').observe('click', startTimer.bindAsEventListener(this, 25, 0));
-				$('btnPomodoroLongBreak').observe('click', startTimer.bindAsEventListener(this, 15, 0));
-				$('btnPomodoroShortBreak').observe('click', startTimer.bindAsEventListener(this, 5,0));
-				$('btnPomodoro005').observe('click', startTimer.bindAsEventListener(this, 0, 5));
+				try {
+						// var s Titanium.UI.createAlertDialog();
+						// a.setMessage('eddie would go');
+						// a.setTitle('this is the title');
+						// a.show();
+            pomodoroData = new PomodoroData();
+				}
+				catch(exc) {
+						// var s Titanium.UI.createAlertDialog();
+						// a.setMessage(exc);
+						// a.setTitle('error');
+						// a.show();
+				 }
+
+				$('btnPomodoroPomodoro').observe('click', startTimer.bindAsEventListener(this, 'pomodoroMinutes'));
+				$('btnPomodoroLongBreak').observe('click', startTimer.bindAsEventListener(this, 'longBreakMinutes'));
+				$('btnPomodoroShortBreak').observe('click', startTimer.bindAsEventListener(this, 'shortBreakMinutes'));
+				$('btnPomodoro005').observe('click', startTimer.bindAsEventListener(this, 'testMinutes'));
 
 
 				$$('.btnPomodoro').each( function(e) {

@@ -23,6 +23,14 @@
             <barColor>#000</barColor>
 			      <fullscreen>false</fullscreen>
         </window>
+        <window>
+            <id>userPrefs</id>
+            <url>userPrefs.html</url>
+            <backgroundColor>white</backgroundColor>
+	          <icon>ti://top rated</icon>
+            <barColor>#000099</barColor>
+			      <fullscreen>false</fullscreen>
+        </window>
 <!-- 
         <window>
             <id>about</id>
@@ -34,5 +42,5 @@
         </window>
 -->
     </windows>
-<guid>995d76ca0e2342e4bedccdb958ebba71</guid>
+<guid>adbcc609cd7149c386fe0a51710718cd</guid>
 <property name="ti.deploytype">development</property></ti:app>
