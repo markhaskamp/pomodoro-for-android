@@ -56,8 +56,10 @@ function timeIntervalEvent(pe) {
     $('timerDisplay').innerHTML = pomodoroDisplay.displayTime(j.displayMinutes, j.displaySeconds);
 
 		if (pomodoroTimer.timeExpired(j.displayMinutes, j.displaySeconds)) {
-				$('timerDisplay').innerHTML = pomodoroDisplay.showTimeExpired();
+				// $('timerDisplay').innerHTML = pomodoroDisplay.showTimeExpired();
 				pe.stop();
+
+				$$('.btnPomodoroActive').invoke('addClassName', 'btnPomodoro').invoke('removeClassName', 'btnPomodoroActive');
 		}
 }
 
@@ -70,18 +72,14 @@ function startTimer(e, timerType) {
 
 		seconds = 0;
 		minutes = pomodoroData.getMinutes(timerType);
-		// $('debugger').innerHTML = minutes;
+		$('debugger').innerHTML = minutes;
 
 		pomodoroTimer = new PomodoroTimer(minutes, seconds);
 		new PeriodicalExecuter(timeIntervalEvent, 1);
 }
 
 function setStylesForClickedButton(ele) {
-    $$('.btnPomodoroActive').each( function(btnElement) {
-						btnElement.addClassName('btnPomodoro');
-						btnElement.removeClassName('btnPomodoroActive');
-				});
-
+		$$('.btnPomodoroActive').invoke('addClassName', 'btnPomodoro').invoke('removeClassName', 'btnPomodoroActive');
     ele.addClassName('btnPomodoroActive');
 }
 
@@ -108,8 +106,7 @@ document.observe('dom:loaded', function() {
 				$('btnPomodoroPomodoro').observe('click', startTimer.bindAsEventListener(this, 'pomodoroMinutes'));
 				$('btnPomodoroLongBreak').observe('click', startTimer.bindAsEventListener(this, 'longBreakMinutes'));
 				$('btnPomodoroShortBreak').observe('click', startTimer.bindAsEventListener(this, 'shortBreakMinutes'));
-				$('btnPomodoro005').observe('click', startTimer.bindAsEventListener(this, 'testMinutes'));
-
+				$('debugger').toggle();
 
 				$$('.btnPomodoro').each( function(e) {
 								e.observe('mouseover', e.setStyle({ cursor: "pointer" }));

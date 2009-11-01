@@ -3,6 +3,7 @@ var PomodoroData = Class.create({
 	initialize: function() {
 						this.userPrefs = $H();
 						this.initializeTable();
+						this.readData();
 				}
 
 	,initializeTable: function() {
@@ -18,6 +19,18 @@ var PomodoroData = Class.create({
 										}
 										rs.close();
 								}
+
+								db.close();
+						}
+						catch(exc) {
+								this.userPrefs.set('pomodoroMinutes', 'got an error somewhere');
+								Titanium.API.log("error", exc);
+						}
+				}
+
+	,readData: function() {
+						try {
+								db = Titanium.Database.open('pomodoroDB');
 
 								var rsPrefs = db.execute("SELECT pomodoroMinutes, shortBreakMinutes, longBreakMinutes, finishFlash, finishBeep, finishVibrate FROM pomodoro");
 								if (rsPrefs.isValidRow()) {

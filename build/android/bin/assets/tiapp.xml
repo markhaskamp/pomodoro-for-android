@@ -7,40 +7,33 @@
 	<prerendered-icon>false</prerendered-icon>
 	<statusbar-style>opaque</statusbar-style>
     <windows>
+
         <window>
-            <id>initial</id>
-            <url>index.html</url>
-            <backgroundColor>#111</backgroundColor>
-			<icon>ti://featured</icon>
-			<barColor>#000</barColor>
-			<fullscreen>false</fullscreen>
+          <id>initial</id>
+          <url>index.html</url>
+          <backgroundColor>#111</backgroundColor>
+					<icon>ti://featured</icon>
+					<barColor>#000</barColor>
+					<fullscreen>false</fullscreen>
         </window>
+
         <window>
-            <id>todo</id>
-            <url>todo.html</url>
-            <backgroundColor>#111</backgroundColor>
-	          <icon>ti://top rated</icon>
-            <barColor>#000</barColor>
-			      <fullscreen>false</fullscreen>
+          <id>userPrefs</id>
+          <url>userPrefs.html</url>
+          <backgroundColor>white</backgroundColor>
+					<icon>ti://top rated</icon>
+          <barColor>#000099</barColor>
+					<fullscreen>false</fullscreen>
         </window>
+
         <window>
-            <id>userPrefs</id>
-            <url>userPrefs.html</url>
-            <backgroundColor>white</backgroundColor>
-	          <icon>ti://top rated</icon>
-            <barColor>#000099</barColor>
-			      <fullscreen>false</fullscreen>
+          <id>todo</id>
+          <url>todo.html</url>
+          <backgroundColor>#111</backgroundColor>
+	        <icon>ti://top rated</icon>
+          <barColor>#000</barColor>
+			    <fullscreen>false</fullscreen>
         </window>
-<!-- 
-        <window>
-            <id>about</id>
-            <url>about.html</url>
-            <backgroundColor>#111</backgroundColor>
-			<icon>ti://top rated</icon>
-            <barColor>#000</barColor>
-			<fullscreen>false</fullscreen>
-        </window>
--->
     </windows>
-<guid>adbcc609cd7149c386fe0a51710718cd</guid>
+<guid>6c50f92279124533af6b33e1f5138b3f</guid>
 <property name="ti.deploytype">development</property></ti:app>
