@@ -15,6 +15,14 @@
 			<barColor>#000</barColor>
 			<fullscreen>false</fullscreen>
         </window>
+        <window>
+            <id>todo</id>
+            <url>todo.html</url>
+            <backgroundColor>#111</backgroundColor>
+	          <icon>ti://top rated</icon>
+            <barColor>#000</barColor>
+			      <fullscreen>false</fullscreen>
+        </window>
 <!-- 
         <window>
             <id>about</id>
@@ -26,5 +34,5 @@
         </window>
 -->
     </windows>
-<guid>bf282bc38c5a4b1eba8d5bf9ec0568b9</guid>
+<guid>aeb31d07b2244d11b2c9cef1ccd8736d</guid>
 <property name="ti.deploytype">development</property></ti:app>

@@ -64,16 +64,33 @@ function timeIntervalEvent(pe) {
 }
 
 function startTimer(e, minutes, seconds) {
+		var ele = Event.element(e);
+
+		setStylesForClickedButton(ele);
+		ele.addClassName('btnPomodoroActive');
+		ele.removeClassName('btnPomodoro');
+
 		pomodoroTimer = new PomodoroTimer(minutes, seconds);
 		new PeriodicalExecuter(timeIntervalEvent, 1);
 }
 
+function setStylesForClickedButton(ele) {
+    $$('.btnPomodoroActive').each( function(btnElement) {
+						btnElement.addClassName('btnPomodoro');
+						btnElement.removeClassName('btnPomodoroActive');
+				});
+
+    ele.addClassName('btnPomodoroActive');
+}
+
+				
+
 document.observe('dom:loaded', function() {
 				pomodoroDisplay = new PomodoroDisplay();
 
-				$('btnPomodoro25').observe('click', startTimer.bindAsEventListener(this, 25, 0));
-				$('btnPomodoro15').observe('click', startTimer.bindAsEventListener(this, 15, 0));
-				$('btnPomodoro5').observe('click', startTimer.bindAsEventListener(this, 5,0));
+				$('btnPomodoroPomodoro').observe('click', startTimer.bindAsEventListener(this, 25, 0));
+				$('btnPomodoroLongBreak').observe('click', startTimer.bindAsEventListener(this, 15, 0));
+				$('btnPomodoroShortBreak').observe('click', startTimer.bindAsEventListener(this, 5,0));
 				$('btnPomodoro005').observe('click', startTimer.bindAsEventListener(this, 0, 5));
 
 
