@@ -72,6 +72,16 @@ describe ('yap', {
     value_of(j.displaySeconds).should_be(45);
   }
 
+  ,"PomodoroDisplay - displayTime for 25, 25": function() {
+    var pd = new PomodoroDisplay();
+    value_of(pd.displayTime(25, 25)).should_be('25:25');
+  }
+
+  ,"PomodoroDisplay - displayTime for 12, 8 - is '12:08'": function() {
+    var pd = new PomodoroDisplay();
+    value_of(pd.displayTime(12, 8)).should_be('12:08');
+  }
+
 
 });
 

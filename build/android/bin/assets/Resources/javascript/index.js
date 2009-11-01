@@ -26,13 +26,6 @@ var PomodoroTimer = Class.create({
                     "displayMinutes": displayMinutes, 
                     "displaySeconds": displaySeconds};
 				}
-		});
-
-var PomodoroDisplay = Class.create({
-				displayTime: function(m, s) {
-						var tpl = new Template('#{minutes}:#{seconds}');
-						return tpl.evaluate({ minutes: displayMinutes.floor(), seconds: displaySeconds });
-				}
 
 				, timeExpired: function (minutesRemaining, secondsRemaining) {
 						if (minutesRemaining < 0 || secondsRemaining < 0) {
@@ -41,6 +34,18 @@ var PomodoroDisplay = Class.create({
 						else {
 								return (minutesRemaining == 0 && secondsRemaining <= 0);
 						}
+				}
+		});
+
+var PomodoroDisplay = Class.create({
+				displayTime: function(m, s) {
+						var tpl = new Template('#{minutes}:#{seconds}');
+								
+						return tpl.evaluate({ "minutes": m, "seconds": s.toPaddedString(2) });
+				}
+
+				, showTimeExpired: function() {
+						return 'stop';
 				}
 
 		});
@@ -52,8 +57,8 @@ function timeIntervalEvent(pe) {
 
     $('timerDisplay').innerHTML = pomodoroDisplay.displayTime(j.displayMinutes, j.displaySeconds);
 
-		if (pomodoroDisplay.timeExpired(j.displayMinutes, j.displaySeconds)) {
-				$('timerDisplay').innerHTML = 'stop';
+		if (pomodoroTimer.timeExpired(j.displayMinutes, j.displaySeconds)) {
+				$('timerDisplay').innerHTML = pomodoroDisplay.showTimeExpired();
 				pe.stop();
 		}
 }
@@ -70,4 +75,11 @@ document.observe('dom:loaded', function() {
 				$('btnPomodoro15').observe('click', startTimer.bindAsEventListener(this, 15, 0));
 				$('btnPomodoro5').observe('click', startTimer.bindAsEventListener(this, 5,0));
 				$('btnPomodoro005').observe('click', startTimer.bindAsEventListener(this, 0, 5));
+
+
+				$$('.btnPomodoro').each( function(e) {
+								e.observe('mouseover', e.setStyle({ cursor: "pointer" }));
+								e.observe('mouseout', e.setStyle({  curser: "auto"    }));
+						});
+
 });
