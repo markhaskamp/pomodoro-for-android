@@ -23,7 +23,6 @@
 
 	<h2>User Preferences</h2>
   
-
 	<div class="formLabel">Beep? </div>
 	<div id="switch1" class="formControl" style="width: 100px;"></div>
   <div style="clear: left;" />
@@ -36,19 +35,39 @@
 	<div class="formControl"><input type="checkbox" id="chkFlash"/></div>
   <div style="clear: left;" />
 
+  <table border="1">
+		<tr><td><span id="pomodoroValue"></span></td>
+			<td>
+				<div id="pomodoroMinutesCtl" style="height: 30px;" />
+		</td></tr>
+
+		<tr><td><span id="shortBreakValue"></span></td>
+			<td>
+				<div id="shortBreakMinutesCtl" style="height: 30px;" />
+		</td></tr>
+
+		<tr><td><span id="longBreakValue"></span></td>
+			<td>
+				<div id="longBreakMinutesCtl" style="height: 30px;" />
+		</td></tr>
+</table>
+
 	<div id="btnSavePreferences">Save Preferences</div>
 
-	<p>
-	<div>Pomodoro</div>
-	<div id="pomodoroValue"></div>
-	<div id="pomodoroMinutesCtl" style="height: 30px; margin-top:50px;"/>
-	</p>
 
 	<script>
 		$('btnSavePreferences').observe('click', savePreferences.bindAsEventListener(this));
 
 		slPomodoro.addEventListener('change', function(e) {
 		  $('pomodoroValue').innerHTML = e.value;
+		});
+
+		slShortBreak.addEventListener('change', function(e) {
+		  $('shortBreakValue').innerHTML = e.value;
+		});
+
+		slLongBreak.addEventListener('change', function(e) {
+		  $('longBreakValue').innerHTML = e.value;
 		});
   </script>
 
