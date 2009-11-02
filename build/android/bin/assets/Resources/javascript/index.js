@@ -83,25 +83,11 @@ function setStylesForClickedButton(ele) {
     ele.addClassName('btnPomodoroActive');
 }
 
-				
 
 document.observe('dom:loaded', function() {
+				Titanium.API.debug('document.observe. enter');
 				pomodoroDisplay = new PomodoroDisplay();
-				Titanium.API.debug('hello world');
-
-				try {
-						// var s Titanium.UI.createAlertDialog();
-						// a.setMessage('eddie would go');
-						// a.setTitle('this is the title');
-						// a.show();
-            pomodoroData = new PomodoroData();
-				}
-				catch(exc) {
-						// var s Titanium.UI.createAlertDialog();
-						// a.setMessage(exc);
-						// a.setTitle('error');
-						// a.show();
-				 }
+				pomodoroData = new PomodoroData();
 
 				$('btnPomodoroPomodoro').observe('click', startTimer.bindAsEventListener(this, 'pomodoroMinutes'));
 				$('btnPomodoroLongBreak').observe('click', startTimer.bindAsEventListener(this, 'longBreakMinutes'));

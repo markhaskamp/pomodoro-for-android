@@ -1,12 +1,34 @@
 <html>
 <head>
+	<link href="styles/userPrefs.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="javascript/userPrefs.js"></script>
+	<script type="text/javascript" src="javascript/prototype.js"></script>
 	<script type="text/javascript" src="javascript/Database.js"></script>
 
 	<title>yaPomodoro, user preferences</title>
 </head>
-<body>
+<body style="font-size: 0.8em;">
 
 	<h2>User Preferences</h2>
+  
+  <p>
+	Beep? &nbsp;<div id="switch1" style="height:30px; width: 110px"></div>
+  </p>
+
+  <br />
+	<p>
+	Vibrate? &nbsp;<div id="slider1" style="height:30px; width: 110px"></div>
+  </p>
+
+	<div id="click">click</div>
+
+	<script>
+		$('click').observe('click', clickFoo.bindAsEventListener(this));
+
+		var sw1 = Titanium.UI.createSwitch({id:'switch1', value:true});
+		var sl1 = Titanium.UI.createSlider({id:'slider1', min:0, max:2, value:1, width:100});
+  </script>
+
 
 </body>
 </html>
