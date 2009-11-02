@@ -1,6 +1,6 @@
 var pomodoroDisplay;
 var pomodoroTimer;
-var pomodoroData
+var pomodoroData;
 
 var PomodoroTimer = Class.create({
 				initialize: function(minutes, seconds) {

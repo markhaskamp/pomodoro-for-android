@@ -55,6 +55,45 @@ var PomodoroData = Class.create({
 						}
 				}
 
+	,setPomodoroMinutes: function(value) {
+						db = Titanium.Database.open('pomodoroDB');
+						db.execute("UPDATE pomodoro SET pomodoroMinutes=" + value);
+						db.close();
+				}
+
+	,setShortBreakMinutes: function(value) {
+						db = Titanium.Database.open('pomodoroDB');
+						db.execute("UPDATE pomodoro SET shortBreakMinutes=" + value);
+						db.close();
+				}
+
+	,setLongBreakMinutes: function(value) {
+						db = Titanium.Database.open('pomodoroDB');
+						db.execute("UPDATE pomodoro SET longBreakMinutes=" + value);
+						db.close();
+				}
+
+	,setBeepFlag: function(value) {
+						db = Titanium.Database.open('pomodoroDB');
+						dbValue = (value ? 1 : 0);
+						db.execute("UPDATE pomodoro SET finishBeep=" + dbValue);
+						db.close();
+				}
+						
+	,setVibrateFlag: function(value) {
+						db = Titanium.Database.open('pomodoroDB');
+						db.execute("UPDATE pomodoro SET finishVibrate=" + value);
+						db.close();
+				}
+						
+	,setFlashFlag: function(value) {
+						db = Titanium.Database.open('pomodoroDB');
+						dbValue = (value == null ? 0 : 1);
+						db.execute("UPDATE pomodoro SET finishFlash=" + dbValue);
+						db.close();
+				}
+						
+
   ,getMinutes: function(timerType) {
 						return this.userPrefs.get(timerType);
 						if (this.userPrefs.get(timertype) == undefined) {
