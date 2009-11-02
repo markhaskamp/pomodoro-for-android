@@ -5,28 +5,51 @@
 	<script type="text/javascript" src="javascript/prototype.js"></script>
 	<script type="text/javascript" src="javascript/Database.js"></script>
 
+	<style type="text/css">
+    .formLabel {
+		  float: left;
+    }
+
+		.formControl {
+		  margin-left: 50px;
+      height: 30px;
+    }
+
+  </style>
+
 	<title>yaPomodoro, user preferences</title>
 </head>
 <body style="font-size: 0.8em;">
 
 	<h2>User Preferences</h2>
   
-  <p>
-	Beep? &nbsp;<div id="switch1" style="height:30px; width: 110px"></div>
-  </p>
 
-  <br />
+	<div class="formLabel">Beep? </div>
+	<div id="switch1" class="formControl" style="width: 100px;"></div>
+  <div style="clear: left;" />
+
+  <div class="formLabel">Vibrate? </div>
+	<div id="slider1" class="formControl"></div>
+  <div style="clear: left;" />
+
+  <div class="formLabel">Flash? </div>
+	<div class="formControl"><input type="checkbox" id="chkFlash"/></div>
+  <div style="clear: left;" />
+
+	<div id="btnSavePreferences">Save Preferences</div>
+
 	<p>
-	Vibrate? &nbsp;<div id="slider1" style="height:30px; width: 110px"></div>
-  </p>
-
-	<div id="click">click</div>
+	<div>Pomodoro</div>
+	<div id="pomodoroValue"></div>
+	<div id="pomodoroMinutesCtl" style="height: 30px; margin-top:50px;"/>
+	</p>
 
 	<script>
-		$('click').observe('click', clickFoo.bindAsEventListener(this));
+		$('btnSavePreferences').observe('click', savePreferences.bindAsEventListener(this));
 
-		var sw1 = Titanium.UI.createSwitch({id:'switch1', value:true});
-		var sl1 = Titanium.UI.createSlider({id:'slider1', min:0, max:2, value:1, width:100});
+		slPomodoro.addEventListener('change', function(e) {
+		  $('pomodoroValue').innerHTML = e.value;
+		});
   </script>
 
 
