@@ -26,6 +26,7 @@
 					<fullscreen>false</fullscreen>
         </window>
 
+<!--
         <window>
           <id>todo</id>
           <url>todo.html</url>
@@ -34,6 +35,7 @@
           <barColor>#000</barColor>
 			    <fullscreen>false</fullscreen>
         </window>
+-->
     </windows>
-<guid>2f26652ade8a4dc1938b0fcd9aecd9e7</guid>
+<guid>42fe21ed28354100b75692cc955080b5</guid>
 <property name="ti.deploytype">development</property></ti:app>

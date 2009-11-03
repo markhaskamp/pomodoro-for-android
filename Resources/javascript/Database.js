@@ -94,7 +94,6 @@ var PomodoroData = Class.create({
 				}
 
 	,getUserPrefsForKey: function(key) {
-						// return this.userPrefs.get(key);
 						return this.getDBValue(key);
 				}
 
