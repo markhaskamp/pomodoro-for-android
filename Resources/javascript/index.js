@@ -1,7 +1,3 @@
-var pomodoroDisplay;
-var pomodoroTimer;
-var pomodoroData;
-
 var PomodoroTimer = Class.create({
 				initialize: function(minutes, seconds) {
 						this.startNewGoal(minutes, seconds)
@@ -64,8 +60,7 @@ function timeIntervalEvent(pe) {
 }
 
 function startTimer(e, timerType) {
-		Titanium.API.log("debug", "startTimer. Enter.");
-		Titanium.API.trace("startTimer. Enter.");
+		logger.log("debug", "startTimer. Enter.");
 		var ele = Event.element(e);
 
 		setStylesForClickedButton(ele);
@@ -83,11 +78,18 @@ function setStylesForClickedButton(ele) {
     ele.addClassName('btnPomodoroActive');
 }
 
+var pomodoroDisplay;
+var pomodoroTimer;
+var pomodoroData;
+var logger;
+
 
 document.observe('dom:loaded', function() {
-				Titanium.API.debug('document.observe. enter');
+				logger = LoggerFactory.create();
+				logger.log('debug', 'document.observe. enter');
+				//Titanium.API.debug('document.observe. enter');
 				pomodoroDisplay = new PomodoroDisplay();
-				pomodoroData = new PomodoroData();
+				pomodoroData = DataAccessFactory.create(); // PomodoroData();
 
 				$('btnPomodoroPomodoro').observe('click', startTimer.bindAsEventListener(this, 'pomodoroMinutes'));
 				$('btnPomodoroLongBreak').observe('click', startTimer.bindAsEventListener(this, 'longBreakMinutes'));

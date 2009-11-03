@@ -1,9 +1,43 @@
 
+var DataAccessFactory = {
+		titaniumDefined: function() {
+				try {
+						Titanium;
+						return true;
+				}
+				catch(exc) {
+						return false;
+				}
+		}
+
+    ,create: function() {
+				if (this.titaniumDefined()) {
+						return new PomodoroData();
+				}
+				else {
+						return new TestDataAccess();
+				}
+
+    }
+};
+
+var TestDataAccess = Class.create({
+				initialize: function() {
+						this.userPrefs = $H();
+						this.userPrefs.set('pomodoroMinutes', 25);
+						this.userPrefs.set('shortBreakMinutes', 5);
+						this.userPrefs.set('longBreakMinutes', 15);
+				}
+
+				,getUserPrefsForKey: function(key) {
+						return this.userPrefs.get(key);
+				}
+
+		});
+
 var PomodoroData = Class.create({
 	initialize: function() {
-
 						this.logger = LoggerFactory.create();
-
 						this.userPrefs = $H();
 						this.initializeTable();
 						this.readData();
@@ -17,8 +51,8 @@ var PomodoroData = Class.create({
 	 							var rs = db.execute("Select count('x') as 'count' from pomodoro");
 								if (rs.isValidRow()) {
 										if (rs.fieldByName("count") == 0) {
-												db.execute("INSERT INTO pomodoro (pomodoroMinutes, shortBreakMinutes, longBreakMinutes) VALUES (25, 5, 15);");
-												db.execute("INSERT INTO pomodoro (finishFlash, finishBeep, finishVibrate) VALUES (1, 1, 1);");
+										    db.execute("INSERT INTO pomodoro (pomodoroMinutes, shortBreakMinutes, longBreakMinutes) VALUES (25, 5, 15);");
+										    db.execute("INSERT INTO pomodoro (finishFlash, finishBeep, finishVibrate) VALUES (1, 1, 1);");
 										}
 										rs.close();
 								}
@@ -59,14 +93,9 @@ var PomodoroData = Class.create({
 				}
 
 	,setPomodoroMinutes: function(value) {
-						try {
 						db = Titanium.Database.open('pomodoroDB');
 						db.execute("UPDATE pomodoro SET pomodoroMinutes=" + value);
 						db.close();
-						}
-						catch(exc) {
-								this.logger.log('error', exc);
-						}
 				}
 
 	,setShortBreakMinutes: function(value) {

@@ -10,6 +10,7 @@
 
 <script type="text/javascript" src="../Resources/javascript/prototype.js"></script>
 <script type="text/javascript" src="../Resources/javascript/index.js"></script>
+<script type="text/javascript" src="../Resources/javascript/Logger.js"></script>
 
 <script type="text/javascript">// <![CDATA[
 
@@ -82,6 +83,17 @@ describe ('yap', {
     value_of(pd.displayTime(12, 8)).should_be('12:08');
   }
 
+  ,"LoggerFactory - create when Titanium object is not defined - return TestLogger": function() {
+    var logger = LoggerFactory.create();
+    value_of(Object.inspect(logger)).should_be('TestLogger');  
+  }
+
+  ,"LoggerFactory - create when titaniumDefined method returns true - return TitaniumLogger": function() {
+    LoggerFactory.prototype.titaniumDefined = function() { return true; };
+
+    var logger = LoggerFactory.create();
+    value_of(Object.inspect(logger)).should_be('TitaniumLogger');  
+  }
 
 });
 

@@ -1,6 +1,6 @@
 
-
 function savePreferences(e) {
+		Titanium.API.log('debug', 'userPrefs.js. savePreferences. enter.');
 		var a = Titanium.UI.createAlertDialog();
 		a.setMessage(slPomodoro.value + ", " +
 								 slShortBreak.value + ", " +
@@ -10,7 +10,10 @@ function savePreferences(e) {
 								 $F('chkFlash'));
 		a.show();
 
+		Titanium.API.log('debug', 'userPrefs.js. savePreferences. before new PomodoroData().');
 		var pomodoroData = new PomodoroData();
+		Titanium.API.log('debug', 'userPrefs.js. savePreferences. after new PomodoroData().');
+		// var pomodoroData = DataAccessFactory.create();
 		pomodoroData.setPomodoroMinutes(slPomodoro.value);
 		pomodoroData.setShortBreakMinutes(slShortBreak.value);
 		pomodoroData.setLongBreakMinutes(slLongBreak.value);
@@ -19,11 +22,10 @@ function savePreferences(e) {
 		pomodoroData.setFlashFlag($F('chkFlash'));
 }
 
+// var ui = UIFactory.create();
 var sw1 = Titanium.UI.createSwitch({id:'switch1', value:true});
 var sl1 = Titanium.UI.createSlider({id:'slider1', min:0, max:1, value:1, width:100});
 var slPomodoro = Titanium.UI.createSlider({ id:'pomodoroMinutesCtl', min:20, max:35, width: 200 });
 var slShortBreak = Titanium.UI.createSlider({ id:'shortBreakMinutesCtl', min:3, max:10, width: 100 });
 var slLongBreak = Titanium.UI.createSlider({ id:'longBreakMinutesCtl', min:10, max:20, width: 130 });
-
-
 
