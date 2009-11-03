@@ -67,7 +67,6 @@ function startTimer(e, timerType) {
 
 		seconds = 0;
 		minutes = pomodoroData.getUserPrefsForKey(timerType);
-		$('debugger').innerHTML = minutes;
 
 		pomodoroTimer = new PomodoroTimer(minutes, seconds);
 		new PeriodicalExecuter(timeIntervalEvent, 1);
@@ -94,7 +93,6 @@ document.observe('dom:loaded', function() {
 				$('btnPomodoroPomodoro').observe('click', startTimer.bindAsEventListener(this, 'pomodoroMinutes'));
 				$('btnPomodoroLongBreak').observe('click', startTimer.bindAsEventListener(this, 'longBreakMinutes'));
 				$('btnPomodoroShortBreak').observe('click', startTimer.bindAsEventListener(this, 'shortBreakMinutes'));
-				$('debugger').toggle();
 
 				$$('.btnPomodoro').each( function(e) {
 								e.observe('mouseover', e.setStyle({ cursor: "pointer" }));

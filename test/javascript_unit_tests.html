@@ -89,9 +89,9 @@ describe ('yap', {
   }
 
   ,"LoggerFactory - create when titaniumDefined method returns true - return TitaniumLogger": function() {
-    LoggerFactory.prototype.titaniumDefined = function() { return true; };
+    LoggerFactory.titaniumDefined = function() { return true; };
 
-    var logger = LoggerFactory.create();
+   var logger = LoggerFactory.create();
     value_of(Object.inspect(logger)).should_be('TitaniumLogger');  
   }
 
