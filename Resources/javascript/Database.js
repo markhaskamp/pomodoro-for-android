@@ -92,13 +92,30 @@ var PomodoroData = Class.create({
 						db.execute("UPDATE pomodoro SET finishFlash=" + dbValue);
 						db.close();
 				}
-						
 
-  ,getMinutes: function(timerType) {
-						return this.userPrefs.get(timerType);
-						if (this.userPrefs.get(timertype) == undefined) {
-								return 1;
-						}
+	,getUserPrefsForKey: function(key) {
+						return this.userPrefs.get(key);
 				}
+
+  ,getDBValue: function(field) {
+						var returnValue = "";
+
+						db = Titanium.Database.open('pomodoroDB');
+						var rs = db.execute("SELECT " + field  + " AS fld FROM pomodoro");
+						if (rs.isValidRow()) {
+								returnValue = rs.FieldByName("fld");
+								rsPrefs.close();
+						}
+						db.close();
+						return returnValue;
+				}
+
+	,getPomodoroMinutes: function() {
+						return this.getDBValue('pomodoroMinutes');
+				}
+
+	//  ,getMinutes: function(timerType) {
+	//						return this.userPrefs.get(timerType);
+	//				}
 
     });

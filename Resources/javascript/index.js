@@ -71,7 +71,7 @@ function startTimer(e, timerType) {
 		setStylesForClickedButton(ele);
 
 		seconds = 0;
-		minutes = pomodoroData.getMinutes(timerType);
+		minutes = pomodoroData.getUserPrefsForKey(timerType);
 		$('debugger').innerHTML = minutes;
 
 		pomodoroTimer = new PomodoroTimer(minutes, seconds);

@@ -1,12 +1,12 @@
 
 function savePreferences(e) {
 		var a = Titanium.UI.createAlertDialog();
-		a.setMessage($(slPomodoro.value + ", " +
-								   slShortBreak.value + ", " +
-								   slLongBreak.value + ", " +
-                   sw1.value + ", " + 
-								   sl1.value + ", " + 
-								   $F('chkFlash'));
+		a.setMessage(slPomodoro.value + ", " +
+								 slShortBreak.value + ", " +
+								 slLongBreak.value + ", " +
+                 sw1.value + ", " + 
+								 sl1.value + ", " + 
+								 $F('chkFlash'));
 		a.show();
 
 		var pomodoroData = new PomodoroData();
