@@ -94,17 +94,20 @@ var PomodoroData = Class.create({
 				}
 
 	,getUserPrefsForKey: function(key) {
-						return this.userPrefs.get(key);
+						// return this.userPrefs.get(key);
+						return this.getDBValue(key);
 				}
 
   ,getDBValue: function(field) {
-						var returnValue = "";
+						var returnValue = "42";
+						sqlStr = "SELECT " + field  + " AS fld FROM pomodoro;";
 
 						db = Titanium.Database.open('pomodoroDB');
-						var rs = db.execute("SELECT " + field  + " AS fld FROM pomodoro");
+						var rs = db.execute(sqlStr);
+						Titanium.API.log("debug", sqlStr);
 						if (rs.isValidRow()) {
-								returnValue = rs.FieldByName("fld");
-								rsPrefs.close();
+								returnValue = rs.fieldByName("fld");
+								rs.close();
 						}
 						db.close();
 						return returnValue;
@@ -114,8 +117,5 @@ var PomodoroData = Class.create({
 						return this.getDBValue('pomodoroMinutes');
 				}
 
-	//  ,getMinutes: function(timerType) {
-	//						return this.userPrefs.get(timerType);
-	//				}
 
     });
