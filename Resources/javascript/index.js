@@ -34,13 +34,37 @@ var PomodoroTimer = Class.create({
 var PomodoroDisplay = Class.create({
 				displayTime: function(m, s) {
 						var tpl = new Template('#{minutes}:#{seconds}');
-								
 						return tpl.evaluate({ "minutes": m, "seconds": s.toPaddedString(2) });
 				}
 
 				, showTimeExpired: function() {
 						return 'stop';
 				}
+
+        , getLogDisplay: function(timerType, startTime, stopTime) {
+            var hLogDisplay = $H();
+            hLogDisplay.set('pomodoroMinutes', 'Pomodoro');
+            hLogDisplay.set('shortBreakMinutes', 'Short Break');
+            hLogDisplay.set('longBreakMinutes', 'Long Break');
+
+            var logTemplate = new Template("<div class='logEntry'><span class='logEntryTime'>#{startTime}#{stopTime}</span><span class='logEntry'>#{message}</span></div>");
+
+            if (stopTime != undefined) {
+                stopTime = " - " + stopTime;
+            }
+
+            return logTemplate.evaluate( { 
+                        startTime: startTime,
+                        stopTime: stopTime,
+                        message: hLogDisplay.get(timerType)
+                            } );
+        }
+
+        , getCurrentHoursAndMinutes: function() {
+            var hoursTemplate = new Template("#{hours}:#{minutes}");
+            var d = new Date();
+            return hoursTemplate.evaluate({ hours: d.getHours(), minutes: d.getMinutes() });
+        }
 
 		});
 
@@ -61,13 +85,14 @@ function timeIntervalEvent(pe) {
 
 function startTimer(e, timerType) {
 		logger.log("debug", "startTimer. Enter.");
-		var ele = Event.element(e);
 
+		var ele = Event.element(e);
 		setStylesForClickedButton(ele);
 
-		seconds = 0;
+		seconds = 2;
 		minutes = pomodoroData.getUserPrefsForKey(timerType);
 
+    addStartToTimerLog(timerType);
 		pomodoroTimer = new PomodoroTimer(minutes, seconds);
 		new PeriodicalExecuter(timeIntervalEvent, 1);
 }
@@ -75,6 +100,12 @@ function startTimer(e, timerType) {
 function setStylesForClickedButton(ele) {
 		$$('.btnPomodoroActive').invoke('addClassName', 'btnPomodoro').invoke('removeClassName', 'btnPomodoroActive');
     ele.addClassName('btnPomodoroActive');
+}
+
+function addStartToTimerLog(timerType) {
+    var newLine = pomodoroDisplay.getLogDisplay(timerType, pomodoroDisplay.getCurrentHoursAndMinutes());
+    var currentHtml = $('timerLog').innerHTML;
+    $('timerLog').innerHTML = currentHtml + newLine;
 }
 
 var pomodoroDisplay;
@@ -89,7 +120,7 @@ document.observe('dom:loaded', function() {
 				//Titanium.API.debug('document.observe. enter');
 				pomodoroDisplay = new PomodoroDisplay();
 				pomodoroData = DataAccessFactory.create(); // PomodoroData();
-
+        
 				$('btnPomodoroPomodoro').observe('click', startTimer.bindAsEventListener(this, 'pomodoroMinutes'));
 				$('btnPomodoroLongBreak').observe('click', startTimer.bindAsEventListener(this, 'longBreakMinutes'));
 				$('btnPomodoroShortBreak').observe('click', startTimer.bindAsEventListener(this, 'shortBreakMinutes'));
