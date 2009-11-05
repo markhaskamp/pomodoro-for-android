@@ -41,21 +41,16 @@ var PomodoroDisplay = Class.create({
 						return 'stop';
 				}
 
-        , getLogDisplay: function(timerType, startTime, stopTime) {
+        , getLogDisplay: function(timerType, startTime) {
             var hLogDisplay = $H();
             hLogDisplay.set('pomodoroMinutes', 'Pomodoro');
             hLogDisplay.set('shortBreakMinutes', 'Short Break');
             hLogDisplay.set('longBreakMinutes', 'Long Break');
 
-            var logTemplate = new Template("<div class='logEntry'><span class='logEntryTime'>#{startTime}#{stopTime}</span><span class='logEntryMessage'>#{message}</span></div>");
-
-            if (stopTime != undefined) {
-                stopTime = " - " + stopTime;
-            }
+            var logTemplate = new Template("<div class='logEntry'><span class='logEntryTime'>#{startTime}</span><span class='logEntryMessage'>#{message}</span></div>");
 
             return logTemplate.evaluate( { 
                         startTime: startTime,
-                        stopTime: stopTime,
                         message: hLogDisplay.get(timerType)
                             } );
         }
@@ -105,7 +100,7 @@ function setStylesForClickedButton(ele) {
 function addStartToTimerLog(timerType) {
     var newLine = pomodoroDisplay.getLogDisplay(timerType, pomodoroDisplay.getCurrentHoursAndMinutes());
     var currentHtml = $('timerLog').innerHTML;
-    $('timerLog').innerHTML = currentHtml + newLine;
+    $('timerLog').innerHTML = newLine + currentHtml
 }
 
 var pomodoroDisplay;
