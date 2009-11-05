@@ -5,7 +5,6 @@
 	<script type="text/javascript" src="javascript/prototype.js"></script>
 	<script type="text/javascript" src="javascript/Logger.js"></script>
 	<script type="text/javascript" src="javascript/Database.js"></script>
-	<!-- <script type="text/javascript" src="javascript/DataAccess.js"></script> -->
 
 	<style type="text/css">
     .formLabel {
@@ -15,6 +14,19 @@
 		.formControl {
 		  margin-left: 50px;
       height: 30px;
+      width: 100px;
+    }
+
+    #btnSavePreferences {
+      width: 130px;
+      padding: 3px;
+      background-color: #999999;
+      text-align: center;
+
+      border-top: solid 1px #CCCCCC;
+      border-left: solid 1px #CCCCCC;
+      border-right: solid 1px #666666;
+      border-bottom: solid 1px #666666;
     }
 
   </style>
@@ -25,36 +37,45 @@
 
 	<h2>User Preferences</h2>
   
+  <h4>When timer hits 00:00</h4>
 	<div class="formLabel">Beep? </div>
-	<div id="switch1" class="formControl" style="width: 100px;"></div>
+	<div id="switchBeep" class="formControl"></div>
   <div style="clear: left;" />
 
   <div class="formLabel">Vibrate? </div>
-	<div id="slider1" class="formControl"></div>
+	<div id="switchVibrate" class="formControl"</div>
   <div style="clear: left;" />
 
   <div class="formLabel">Flash? </div>
-	<div class="formControl"><input type="checkbox" id="chkFlash"/></div>
+	<div id="switchFlash" class="formControl"></div>
   <div style="clear: left;" />
 
-  <table border="0">
-		<tr><td><span id="pomodoroValue"></span></td>
-			<td>
-				<div id="pomodoroMinutesCtl" style="height: 30px;" />
-		</td></tr>
+  <h4>Minutes for each timer event</h4>
+  <table border="0" width="100%">
+		<tr>
+      <td width="20%">Pomodoro<br/>
+        <span id="pomodoroValue"</span></td>
+			<td> <div id="pomodoroMinutesCtl" style="height: 30px;" /> </td>
+    </tr>
 
-		<tr><td><span id="shortBreakValue"></span></td>
-			<td>
-				<div id="shortBreakMinutesCtl" style="height: 30px;" />
-		</td></tr>
+		<tr>
+      <td>Short Break<br />
+        <span id="shortBreakValue"></span>
+      </td>
+			<td> <div id="shortBreakMinutesCtl" style="height: 30px;" /> </td>
+    </tr>
 
-		<tr><td><span id="longBreakValue"></span></td>
-			<td>
-				<div id="longBreakMinutesCtl" style="height: 30px;" />
-		</td></tr>
+		<tr>
+      <td>Long Break<br />
+        <span id="longBreakValue"></span>
+      </td>
+			<td> <div id="longBreakMinutesCtl" style="height: 30px;" /> </td>
+    </tr>
 </table>
 
+  <p>
 	<div id="btnSavePreferences">Save Preferences</div>
+  </p>
 
 
 	<script>

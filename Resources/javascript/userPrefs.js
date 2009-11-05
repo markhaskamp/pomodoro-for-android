@@ -5,15 +5,15 @@ function savePreferences(e) {
 		a.setMessage(slPomodoro.value + ", " +
 								 slShortBreak.value + ", " +
 								 slLongBreak.value + ", " +
-                 sw1.value + ", " + 
-								 sl1.value + ", " + 
-								 $F('chkFlash'));
+                 switchBeep.value + ", " + 
+								 switchVibrate.value + ", " + 
+								 switchFlash.value);
 		a.show();
 
 		Titanium.API.log('debug', 'userPrefs.js. savePreferences. before new PomodoroData().');
 		var pomodoroData = new PomodoroData();
-		Titanium.API.log('debug', 'userPrefs.js. savePreferences. after new PomodoroData().');
 		// var pomodoroData = DataAccessFactory.create();
+		Titanium.API.log('debug', 'userPrefs.js. savePreferences. after new PomodoroData().');
 		pomodoroData.setPomodoroMinutes(slPomodoro.value);
 		pomodoroData.setShortBreakMinutes(slShortBreak.value);
 		pomodoroData.setLongBreakMinutes(slLongBreak.value);
@@ -23,8 +23,9 @@ function savePreferences(e) {
 }
 
 // var ui = UIFactory.create();
-var sw1 = Titanium.UI.createSwitch({id:'switch1', value:true});
-var sl1 = Titanium.UI.createSlider({id:'slider1', min:0, max:1, value:1, width:100});
+var switchBeep = Titanium.UI.createSwitch({id:'switchBeep', value:true});
+var switchVibrate = Titanium.UI.createSwitch({id:'switchVibrate', value:true});
+var switchFlash = Titanium.UI.createSwitch({id:'switchFlash', value:true});
 var slPomodoro = Titanium.UI.createSlider({ id:'pomodoroMinutesCtl', min:1, max:35, width: 200 });
 var slShortBreak = Titanium.UI.createSlider({ id:'shortBreakMinutesCtl', min:1, max:10, width: 57 });
 var slLongBreak = Titanium.UI.createSlider({ id:'longBreakMinutesCtl', min:1, max:20, width: 114 });

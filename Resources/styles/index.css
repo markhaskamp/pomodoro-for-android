@@ -55,15 +55,6 @@ h1,h2
 }
 
 #timerLog {
-		/* 
-       background-color: #222222;
-       border-right: solid 1px white;
-       border-bottom: solid 1px white;
-       border-top: solid 1px black;
-       border-left: solid 1px black;
-		   padding: 8px;
-       width: 250px;
-    */
     margin-top: 0.5em;
 }
 
@@ -82,3 +73,4 @@ h1,h2
 
 .logEntryMessage {
 }
+
