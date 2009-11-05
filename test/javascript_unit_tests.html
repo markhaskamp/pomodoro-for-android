@@ -12,6 +12,7 @@
 <script type="text/javascript" src="../Resources/javascript/index.js"></script>
 <script type="text/javascript" src="../Resources/javascript/Logger.js"></script>
 <script type="text/javascript" src="../Resources/javascript/DataAccess.js"></script>
+<script type="text/javascript" src="../Resources/javascript/Device.js"></script>
 
 <script type="text/javascript">// <![CDATA[
 
@@ -72,6 +73,20 @@ describe ('yap', {
     value_of(j.pomodoroSecondsRemaining).should_be(225);
     value_of(j.displayMinutes).should_be(3);
     value_of(j.displaySeconds).should_be(45);
+  }
+
+  ,"PomodoroTimer - reactToTimerStopped - calls beep, vibrate": function() {
+    var beepThis = 0;
+    var vibrateThis = 0;
+
+    GenericDevice.prototype.beep = function() { beepThis = 42; }
+    GenericDevice.prototype.vibrate = function() { vibrateThis = 43; }
+
+    var pt = new PomodoroTimer(5, 0);
+    pt.reactToTimerStopped();
+
+    value_of(beepThis).should_be(42);
+    value_of(vibrateThis).should_be(43);
   }
 
   ,"PomodoroDisplay - displayTime for 25, 25": function() {

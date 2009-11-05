@@ -29,6 +29,11 @@ var PomodoroTimer = Class.create({
 								return (minutesRemaining == 0 && secondsRemaining <= 0);
 						}
 				}
+
+        ,reactToTimerStopped: function() {
+            device.beep();
+            device.vibrate();
+        }
 		});
 
 var PomodoroDisplay = Class.create({
@@ -72,6 +77,7 @@ function timeIntervalEvent(pe) {
 
 		if (pomodoroTimer.timeExpired(j.displayMinutes, j.displaySeconds)) {
 				// $('timerDisplay').innerHTML = pomodoroDisplay.showTimeExpired();
+        pomodoroTimer.reactToTimerStopped();
 				pe.stop();
 
 				$$('.btnPomodoroActive').invoke('addClassName', 'btnPomodoro').invoke('removeClassName', 'btnPomodoroActive');
@@ -106,6 +112,7 @@ function addStartToTimerLog(timerType) {
 var pomodoroDisplay;
 var pomodoroTimer;
 var pomodoroData;
+var device;
 var logger;
 
 
@@ -115,6 +122,7 @@ document.observe('dom:loaded', function() {
 				
 				pomodoroDisplay = new PomodoroDisplay();
 				pomodoroData = DataAccessFactory.create(); // PomodoroData();
+        device = DeviceFactory.create();
         
 				$('btnPomodoroPomodoro').observe('click', startTimer.bindAsEventListener(this, 'pomodoroMinutes'));
 				$('btnPomodoroLongBreak').observe('click', startTimer.bindAsEventListener(this, 'longBreakMinutes'));
