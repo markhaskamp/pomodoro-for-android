@@ -84,6 +84,10 @@ function timeIntervalEvent(pe) {
 		}
 }
 
+function clearLog(e) {
+    $('timerLog').innerHTML = '';
+}
+
 function startTimer(e, timerType) {
 		logger.log("debug", "startTimer. Enter.");
 
@@ -128,7 +132,14 @@ document.observe('dom:loaded', function() {
 				$('btnPomodoroLongBreak').observe('click', startTimer.bindAsEventListener(this, 'longBreakMinutes'));
 				$('btnPomodoroShortBreak').observe('click', startTimer.bindAsEventListener(this, 'shortBreakMinutes'));
 
+        $('logHeadingClear').observe('click', clearLog.bind(this));
+
 				$$('.btnPomodoro').each( function(e) {
+								e.observe('mouseover', e.setStyle({ cursor: "pointer" }));
+								e.observe('mouseout', e.setStyle({  curser: "auto"    }));
+						});
+
+				$$('.logHeadingClear').each( function(e) {
 								e.observe('mouseover', e.setStyle({ cursor: "pointer" }));
 								e.observe('mouseout', e.setStyle({  curser: "auto"    }));
 						});
