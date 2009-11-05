@@ -47,7 +47,7 @@ var PomodoroDisplay = Class.create({
             hLogDisplay.set('shortBreakMinutes', 'Short Break');
             hLogDisplay.set('longBreakMinutes', 'Long Break');
 
-            var logTemplate = new Template("<div class='logEntry'><span class='logEntryTime'>#{startTime}#{stopTime}</span><span class='logEntry'>#{message}</span></div>");
+            var logTemplate = new Template("<div class='logEntry'><span class='logEntryTime'>#{startTime}#{stopTime}</span><span class='logEntryMessage'>#{message}</span></div>");
 
             if (stopTime != undefined) {
                 stopTime = " - " + stopTime;
@@ -63,7 +63,7 @@ var PomodoroDisplay = Class.create({
         , getCurrentHoursAndMinutes: function() {
             var hoursTemplate = new Template("#{hours}:#{minutes}");
             var d = new Date();
-            return hoursTemplate.evaluate({ hours: d.getHours(), minutes: d.getMinutes() });
+            return hoursTemplate.evaluate({ hours: d.getHours(), minutes: d.getMinutes().toPaddedString(2) });
         }
 
 		});
@@ -89,7 +89,7 @@ function startTimer(e, timerType) {
 		var ele = Event.element(e);
 		setStylesForClickedButton(ele);
 
-		seconds = 2;
+		seconds = 0;
 		minutes = pomodoroData.getUserPrefsForKey(timerType);
 
     addStartToTimerLog(timerType);
@@ -117,7 +117,7 @@ var logger;
 document.observe('dom:loaded', function() {
 				logger = LoggerFactory.create();
 				logger.log('debug', 'document.observe. enter');
-				//Titanium.API.debug('document.observe. enter');
+				
 				pomodoroDisplay = new PomodoroDisplay();
 				pomodoroData = DataAccessFactory.create(); // PomodoroData();
         
