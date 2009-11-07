@@ -28,3 +28,5 @@ Next Tasks
      - it's currently too "fine" for fingers
    - on load, display the already set values from the database
    - hook up the  finish switches
+ - Misc
+   - set up a different branch for running local for AndroidManifest.xml file?
