@@ -86,6 +86,7 @@ function timeIntervalEvent(pe) {
 
 function clearLog(e) {
     $('timerLog').innerHTML = '';
+    $('logHeadingClear').hide();
 }
 
 function startTimer(e, timerType) {
@@ -110,7 +111,9 @@ function setStylesForClickedButton(ele) {
 function addStartToTimerLog(timerType) {
     var newLine = pomodoroDisplay.getLogDisplay(timerType, pomodoroDisplay.getCurrentHoursAndMinutes());
     var currentHtml = $('timerLog').innerHTML;
-    $('timerLog').innerHTML = newLine + currentHtml
+    $('timerLog').innerHTML = newLine + currentHtml;
+
+    $('logHeadingClear').show();
 }
 
 var pomodoroDisplay;
@@ -138,10 +141,7 @@ document.observe('dom:loaded', function() {
 								e.observe('mouseover', e.setStyle({ cursor: "pointer" }));
 								e.observe('mouseout', e.setStyle({  curser: "auto"    }));
 						});
-
-				$$('.logHeadingClear').each( function(e) {
-								e.observe('mouseover', e.setStyle({ cursor: "pointer" }));
-								e.observe('mouseout', e.setStyle({  curser: "auto"    }));
-						});
+        
+        $('logHeadingClear').hide();
 
 });
