@@ -12,7 +12,6 @@ function savePreferences(e) {
 
 		Titanium.API.log('debug', 'userPrefs.js. savePreferences. before new PomodoroData().');
 		var pomodoroData = new PomodoroData();
-		// var pomodoroData = DataAccessFactory.create();
 		Titanium.API.log('debug', 'userPrefs.js. savePreferences. after new PomodoroData().');
 		pomodoroData.setPomodoroMinutes(slPomodoro.value);
 		pomodoroData.setShortBreakMinutes(slShortBreak.value);
@@ -22,7 +21,15 @@ function savePreferences(e) {
 		pomodoroData.setFlashFlag($F('chkFlash'));
 }
 
-// var ui = UIFactory.create();
+function resetPreferences(e) {
+    Titanium.API.log('debug', 'userPrefs.js. resetPreferences(). Enter');
+		var pomodoroData = new PomodoroData();
+    Titanium.API.log('debug', 'userPrefs.js. got to here.');
+    pomodoroData.setToDefaultValues();
+    Titanium.API.log('debug', 'userPrefs.js. resetPreferences(). Exit');
+}
+
+
 var switchBeep = Titanium.UI.createSwitch({id:'switchBeep', value:true});
 var switchVibrate = Titanium.UI.createSwitch({id:'switchVibrate', value:true});
 var switchFlash = Titanium.UI.createSwitch({id:'switchFlash', value:true});

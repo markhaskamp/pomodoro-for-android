@@ -38,6 +38,7 @@ var TestDataAccess = Class.create({
 var PomodoroData = Class.create({
 	initialize: function() {
 						this.logger = LoggerFactory.create();
+            this.logger.log("debug", "PomodoroData. initialize(). Enter");
 						this.userPrefs = $H();
 						this.initializeTable();
 						this.readData();
@@ -51,8 +52,7 @@ var PomodoroData = Class.create({
 	 							var rs = db.execute("Select count('x') as 'count' from pomodoro");
 								if (rs.isValidRow()) {
 										if (rs.fieldByName("count") == 0) {
-										    db.execute("INSERT INTO pomodoro (pomodoroMinutes, shortBreakMinutes, longBreakMinutes) VALUES (25, 5, 15);");
-										    db.execute("INSERT INTO pomodoro (finishFlash, finishBeep, finishVibrate) VALUES (1, 1, 1);");
+                        db.execute("INSERT INTO pomodoro (pomodoroMinutes, shortBreakMinutes, longBreakMinutes, finishFlash, finishBeep, finishVibrate) VALUES (25, 5, 15, 1, 1, 1);");
 										}
 										rs.close();
 								}
@@ -91,6 +91,22 @@ var PomodoroData = Class.create({
 								this.logger.log("error", exc);
 						}
 				}
+
+  ,setToDefaultValues: function() {
+            this.logger.log('debug', "DataAccess. setToDefaultValues(). Enter");
+            try {
+						db = Titanium.Database.open('pomodoroDB');
+            db.execute("DELETE FROM pomodoro");
+            db.execute("INSERT INTO pomodoro (pomodoroMinutes, shortBreakMinutes, longBreakMinutes, finishFlash, finishBeep, finishVibrate) VALUES (25, 5, 15, 1, 1, 1);");
+						db.close();
+
+            }
+            catch(exc) {
+                this.logger.log('debug', "=== ERROR> " + exc);
+            }
+
+            this.logger.log('debug', "DataAccess. setTtoDefaultValues(). Exit");
+        }
 
 	,setPomodoroMinutes: function(value) {
 						db = Titanium.Database.open('pomodoroDB');
@@ -140,7 +156,7 @@ var PomodoroData = Class.create({
 
 						db = Titanium.Database.open('pomodoroDB');
 						var rs = db.execute(sqlStr);
-						Titanium.API.log("debug", sqlStr);
+						this.logger.log("debug", "DataAccess. getDBValue(). sqlStr:" + sqlStr);
 						if (rs.isValidRow()) {
 								returnValue = rs.fieldByName("fld");
 								rs.close();

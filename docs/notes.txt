@@ -23,6 +23,7 @@ Next Tasks
    - work on the 'flash'
    - first line (active line) in log should be set apart (white vs nearly-white?)
  - User Preferences page
+   - reset to defaults
    - shorter ranges yet longer width for User Preferences sliders
      - it's currently too "fine" for fingers
    - on load, display the already set values from the database

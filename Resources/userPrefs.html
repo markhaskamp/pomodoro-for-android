@@ -4,7 +4,7 @@
 	<script type="text/javascript" src="javascript/userPrefs.js"></script>
 	<script type="text/javascript" src="javascript/prototype.js"></script>
 	<script type="text/javascript" src="javascript/Logger.js"></script>
-	<script type="text/javascript" src="javascript/Database.js"></script>
+	<script type="text/javascript" src="javascript/DataAccess.js"></script>
 
 	<style type="text/css">
     .formLabel {
@@ -17,7 +17,7 @@
       width: 100px;
     }
 
-    #btnSavePreferences {
+    #btnSavePreferences, #btnResetPreferences {
       width: 130px;
       padding: 3px;
       background-color: #999999;
@@ -77,9 +77,14 @@
 	<div id="btnSavePreferences">Save Preferences</div>
   </p>
 
+  <p>
+	<div id="btnResetPreferences">Reset to Default</div>
+  </p>
+
 
 	<script>
 		$('btnSavePreferences').observe('click', savePreferences.bindAsEventListener(this));
+		$('btnResetPreferences').observe('click', resetPreferences.bindAsEventListener(this));
 
 		slPomodoro.addEventListener('change', function(e) {
 		  $('pomodoroValue').innerHTML = e.value;
