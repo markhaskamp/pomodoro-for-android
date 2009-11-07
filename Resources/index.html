@@ -13,19 +13,28 @@
 <body>
 	<h2>Pomodoro Timer</h2>
 
-  <div id="buttonContainer">
-	  <div class="btnPomodoro" id="btnPomodoroPomodoro">pomodoro</div>
-	  <div class="btnPomodoro" id="btnPomodoroShortBreak">short break</div>
-	  <div class="btnPomodoro" id="btnPomodoroLongBreak">long break</div>
+  
+  <table width="100%" border="0">
+  <tr><td width="25%"><td align="center">
+	  <div id="timerDisplay">0:00</div>
+    </td>
+    <td width="25%">&nbsp;</td>
+  </tr>
+  </table>
+
+  <div style="text-align: center">
+    <div id="buttonContainer">
+	    <span class="btnPomodoro" id="btnPomodoroPomodoro">pomodoro</span>
+	    <span class="btnPomodoro" id="btnPomodoroShortBreak">short break</span>
+	    <span class="btnPomodoro" id="btnPomodoroLongBreak">long break</span>
+    </div>
   </div>
 
-	<div id="timerDisplay">0:00</div>
-
-	<div style="clear: right" />
 
   <div id="logHeading" style="margin-top: 1.0em"><span class="logHeading">Timer Log</span>
-                                           &nbsp;<span class="logHeadingClear" id="logHeadingClear">[clear]</span>
+    &nbsp;<span class="logHeadingClear" id="logHeadingClear">[clear]</span>
   </div>
+
   <div id="timerLog">
   </div>
 

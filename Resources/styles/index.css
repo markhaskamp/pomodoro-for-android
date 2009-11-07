@@ -11,10 +11,6 @@ h1,h2
 }
 
 
-#buttonContainer {
-  float: right;
-}
-
 #timerDisplay {
 		background-color: #222222;
     border-right: solid 1px white;
@@ -23,7 +19,7 @@ h1,h2
     border-left: solid 1px black;
     font-size: 48px;
 		padding: 8px;
-    margin-left: 10px;
+    margin: 10px;
     width: 150px;
     text-align: center;
 }
