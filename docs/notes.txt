@@ -16,3 +16,15 @@ might display,
  estimate vs actual pomodoro for task
  count of pomodoros completed
 
+
+Next Tasks
+ - Timer page
+   - move buttons to run horizontally under the time display
+   - enlarge the time display
+   - move the 'clear' button to the bottom of the entry list
+   - work on the 'flash'
+ - User Preferences page
+   - shorter ranges yet longer width for User Preferences sliders
+     - it's currently too "fine" for fingers
+   - on load, display the already set values from the database
+   - hook up the  finish switches
