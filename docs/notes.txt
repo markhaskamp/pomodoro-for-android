@@ -21,6 +21,7 @@ Next Tasks
  - Timer page
    - enlarge the time display
    - work on the 'flash'
+   - first line (active line) in log should be set apart (white vs nearly-white?)
  - User Preferences page
    - shorter ranges yet longer width for User Preferences sliders
      - it's currently too "fine" for fingers
