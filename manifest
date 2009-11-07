@@ -6,3 +6,4 @@
 #desc: undefined
 #type: mobile
 #guid: 509b7607-f419-4536-a81d-b83b6ece9129
+android;debuggable="true"
