@@ -1,10 +1,10 @@
 <html>
 <head>
 	<link href="styles/userPrefs.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="javascript/userPrefs.js"></script>
 	<script type="text/javascript" src="javascript/prototype.js"></script>
-	<script type="text/javascript" src="javascript/Logger.js"></script>
 	<script type="text/javascript" src="javascript/DataAccess.js"></script>
+	<script type="text/javascript" src="javascript/Logger.js"></script>
+	<script type="text/javascript" src="javascript/userPrefs.js"></script>
 
 	<style type="text/css">
     .formLabel {
@@ -97,6 +97,8 @@
 		slLongBreak.addEventListener('change', function(e) {
 		  $('longBreakValue').innerHTML = e.value;
 		});
+
+    pomoVal = setPomoVal();
   </script>
 
 

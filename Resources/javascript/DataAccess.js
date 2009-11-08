@@ -154,14 +154,19 @@ var PomodoroData = Class.create({
 						var returnValue = "42";
 						sqlStr = "SELECT " + field  + " AS fld FROM pomodoro;";
 
-						db = Titanium.Database.open('pomodoroDB');
-						var rs = db.execute(sqlStr);
-						this.logger.log("debug", "DataAccess. getDBValue(). sqlStr:" + sqlStr);
-						if (rs.isValidRow()) {
-								returnValue = rs.fieldByName("fld");
-								rs.close();
-						}
-						db.close();
+            try {
+                db = Titanium.Database.open('pomodoroDB');
+                var rs = db.execute(sqlStr);
+                this.logger.log("debug", "DataAccess. getDBValue(). sqlStr:" + sqlStr);
+                if (rs.isValidRow()) {
+                    returnValue = rs.fieldByName("fld");
+                    rs.close();
+                }
+                db.close();
+            }
+            catch(exc) {
+                this.logger.log('debug', '===> ERROR: ' + exc);
+            }
 						return returnValue;
 				}
 
