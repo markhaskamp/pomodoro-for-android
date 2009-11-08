@@ -29,6 +29,15 @@
       border-bottom: solid 1px #666666;
     }
 
+    .minutesValue {
+     float: left;
+    }
+
+    .minutesSlider {
+      height: 30px; 
+      margin-left: 2.5em;
+    }
+
   </style>
 
 	<title>yaPomodoro, user preferences</title>
@@ -51,28 +60,21 @@
   <div style="clear: left;" />
 
   <h4>Minutes for each timer event</h4>
-  <table border="0" width="100%">
-		<tr>
-      <td width="20%">Pomodoro<br/>
-        <span id="pomodoroValue"</span></td>
-			<td> <div id="pomodoroMinutesCtl" style="height: 30px;" /> </td>
-    </tr>
-
-		<tr>
-      <td>Short Break<br />
-        <span id="shortBreakValue"></span>
-      </td>
-			<td> <div id="shortBreakMinutesCtl" style="height: 30px;" /> </td>
-    </tr>
-
-		<tr>
-      <td>Long Break<br />
-        <span id="longBreakValue"></span>
-      </td>
-			<td> <div id="longBreakMinutesCtl" style="height: 30px;" /> </td>
-    </tr>
-</table>
-
+  <div class="minutesTimer">Pomodoro</div>
+  <div class="minutesValue" id="pomodoroValue"></div>
+	<div class="minutesSlider" id="pomodoroMinutesCtl"></div>
+  <div style="clear; left" />
+  
+  <div class="minutesTimer">Short Break</div>
+  <div class="minutesValue" id="shortBreakValue"></div>
+	<div class="minutesSlider" id="shortBreakMinutesCtl"></div>
+  <div style="clear; left" />
+  
+  <div class="minutesTimer">Long Break</div>
+  <div class="minutesValue" id="longBreakValue"></div>
+	<div class="minutesSlider" id="longBreakMinutesCtl"></div>
+  <div style="clear; left" />
+  
   <p>
 	<div id="btnSavePreferences">Save Preferences</div>
   </p>

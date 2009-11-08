@@ -1,0 +1,3 @@
+slider controls didn't show up when inside a <span> tag but did inside a <div>.
+They need to adjust the height so an inline tag won't work (unless you modify the style of the inline tag).
+

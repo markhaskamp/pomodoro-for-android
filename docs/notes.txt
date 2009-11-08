@@ -38,3 +38,4 @@ Next Tasks
 Done
   - move buttons to run horizontally under the time display
   - move the 'clear' button to the bottom of the entry list
+

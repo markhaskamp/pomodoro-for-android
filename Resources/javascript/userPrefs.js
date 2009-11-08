@@ -50,20 +50,20 @@ var switchVibrate = Titanium.UI.createSwitch({id:'switchVibrate', value:true});
 var switchFlash = Titanium.UI.createSwitch({id:'switchFlash', value:true});
 
 var slPomodoro = Titanium.UI.createSlider({ id:'pomodoroMinutesCtl' 
-                                            ,min:1, max:35
-                                            ,width: 200 
+                                            ,min:20, max:35
+                                            ,width: 225 
                                             ,value: getStoredValues('pomodoroMinutes')
                                             });
 
 var slShortBreak = Titanium.UI.createSlider({ id:'shortBreakMinutesCtl'
                                               ,min:1, max:10
-                                              ,width: 57 
+                                              ,width: 225 
                                               ,value: getStoredValues('shortBreakMinutes')
                                             });
 
 var slLongBreak = Titanium.UI.createSlider({ id:'longBreakMinutesCtl'
-                                             ,min:1, max:20
-                                             ,width: 114
+                                             ,min:10, max:20
+                                             ,width: 225
                                              ,value: getStoredValues('longBreakMinutes')
                                              });
 
