@@ -1,6 +1,7 @@
 
 function savePreferences(e) {
-		Titanium.API.log('debug', 'userPrefs.js. savePreferences. enter.');
+    logger = LoggerFactory.create();
+		logger.log('debug', 'userPrefs.js. savePreferences. enter.');
 		var a = Titanium.UI.createAlertDialog();
 		a.setMessage(slPomodoro.value + ", " +
 								 slShortBreak.value + ", " +
@@ -10,9 +11,9 @@ function savePreferences(e) {
 								 switchFlash.value);
 		a.show();
 
-		Titanium.API.log('debug', 'userPrefs.js. savePreferences. before new PomodoroData().');
+		logger.log('debug', 'userPrefs.js. savePreferences. before new PomodoroData().');
 		var pomodoroData = new PomodoroData();
-		Titanium.API.log('debug', 'userPrefs.js. savePreferences. after new PomodoroData().');
+		logger.log('debug', 'userPrefs.js. savePreferences. after new PomodoroData().');
 		pomodoroData.setPomodoroMinutes(slPomodoro.value);
 		pomodoroData.setShortBreakMinutes(slShortBreak.value);
 		pomodoroData.setLongBreakMinutes(slLongBreak.value);
@@ -22,29 +23,27 @@ function savePreferences(e) {
 }
 
 function resetPreferences(e) {
-    Titanium.API.log('debug', 'userPrefs.js. resetPreferences(). Enter');
+    logger = LoggerFactory.create();
+    logger.log('debug', 'userPrefs.js. resetPreferences(). Enter');
 		var pomodoroData = new PomodoroData();
-    Titanium.API.log('debug', 'userPrefs.js. got to here.');
+    logger.log('debug', 'userPrefs.js. got to here.');
     pomodoroData.setToDefaultValues();
-    Titanium.API.log('debug', 'userPrefs.js. resetPreferences(). Exit');
+    logger.log('debug', 'userPrefs.js. resetPreferences(). Exit');
 }
 
 function getStoredValues(dbField) {
     try {
+        logger = LoggerFactory.create();
         var pomodoroData = new PomodoroData();
         var foo =  pomodoroData.getUserPrefsForKey(dbField);
-        Titanium.API.log('debug', foo);
+        logger.log('debug', foo);
         return foo;
     }
     catch(exc) {
-        Titanium.API.log('debug', '===> ERROR: ' + exc);
+        log.log('debug', '===> ERROR: ' + exc);
     }
     return 0;
 }
-
-// var pomodoroValue = getStoredValues('pomodoroMinutes');
-// var shortBreakValue = getStoredValues('shortBreakMinutes');
-// var longBreakValue = getStoredValues('longBreakMinutes');
 
 var switchBeep = Titanium.UI.createSwitch({id:'switchBeep', value:true});
 var switchVibrate = Titanium.UI.createSwitch({id:'switchVibrate', value:true});
