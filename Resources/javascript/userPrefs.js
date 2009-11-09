@@ -3,11 +3,7 @@ function savePreferences(e) {
     logger = LoggerFactory.create();
 		logger.log('debug', 'userPrefs.js. savePreferences. enter.');
 		var a = Titanium.UI.createAlertDialog();
-		a.setMessage(slPomodoro.value + ", " +
-								 slShortBreak.value + ", " +
-								 slLongBreak.value + ", " +
-                 switchBeep.value + ", " + 
-								 switchVibrate.value);
+    a.setMessage("Saved");
 		a.show();
 
 		var pomodoroData = DataAccessFactory.create();
@@ -15,12 +11,21 @@ function savePreferences(e) {
 		pomodoroData.setShortBreakMinutes(slShortBreak.value);
 		pomodoroData.setLongBreakMinutes(slLongBreak.value);
 	  pomodoroData.setBeepFlag(switchBeep.value);
-		pomodoroData.setVibrateFlag(switchVibrate.value);
+		// pomodoroData.setVibrateFlag(switchVibrate.value);
 }
 
 function resetPreferences(e) {
+    switchBeep.value = true;
+    slPomodoro.value = 25;
+    slShortBreak.value = 5;
+    slLongBreak.value = 15;
+
 		var pomodoroData = new PomodoroData();
     pomodoroData.setToDefaultValues();
+
+		var a = Titanium.UI.createAlertDialog();
+    a.setMessage("Reset and Saved");
+		a.show();
 }
 
 function getStoredValues(dbField) {
@@ -40,7 +45,7 @@ tfHash.set(0, false);
 tfHash.set(1, true);
 
 var switchBeep = Titanium.UI.createSwitch({id:'switchBeep', value:tfHash.get(getStoredValues('finishBeep')) });
-var switchVibrate = Titanium.UI.createSwitch({id:'switchVibrate', value:tfHash.get(getStoredValues('finishBeep')) });
+// var switchVibrate = Titanium.UI.createSwitch({id:'switchVibrate', value:tfHash.get(getStoredValues('finishBeep')) });
 
 var slPomodoro = Titanium.UI.createSlider({ id:'pomodoroMinutesCtl' 
                                             ,min:20, max:35

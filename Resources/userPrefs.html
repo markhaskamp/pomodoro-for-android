@@ -17,16 +17,28 @@
       width: 100px;
     }
 
-    #btnSavePreferences, #btnResetPreferences {
-      width: 130px;
-      padding: 3px;
+    #buttonContainer {
+      margin-top: 2.0em;
+    }
+
+    .buttons {
+      width: 4.0em;;
+      height: 2.75em;;
       background-color: #999999;
       text-align: center;
+      padding-top: 1.5em;
 
       border-top: solid 1px #CCCCCC;
       border-left: solid 1px #CCCCCC;
       border-right: solid 1px #666666;
       border-bottom: solid 1px #666666;
+    }
+
+    #btnSavePreferences {
+      float: left;
+    }
+    #btnResetPreferences {
+      margin-left: 6.0em;
     }
 
     .minutesValue {
@@ -40,7 +52,7 @@
 
   </style>
 
-	<title>yaPomodoro, user preferences</title>
+	<title>Pomodoro</title>
 </head>
 <body style="font-size: 0.8em;">
 
@@ -49,10 +61,6 @@
   <h4>When timer hits 00:00</h4>
 	<div class="formLabel">Beep? </div>
 	<div id="switchBeep" class="formControl"></div>
-  <div style="clear: left;" />
-
-  <div class="formLabel">Vibrate? </div>
-	<div id="switchVibrate" class="formControl"</div>
   <div style="clear: left;" />
 
   <h4>Minutes for each timer event</h4>
@@ -71,13 +79,10 @@
 	<div class="minutesSlider" id="longBreakMinutesCtl"></div>
   <div style="clear; left" />
   
-  <p>
-	<div id="btnSavePreferences">Save Preferences</div>
-  </p>
-
-  <p>
-	<div id="btnResetPreferences">Reset to Default</div>
-  </p>
+  <div id="buttonContainer">
+	<div class="buttons" id="btnSavePreferences">Save</div>
+	<div class="buttons" id="btnResetPreferences">Reset</div>
+  </div>
 
 
 	<script>
