@@ -31,8 +31,11 @@ var PomodoroTimer = Class.create({
 				}
 
         ,reactToTimerStopped: function() {
+
+		      if (pomodoroData.getUserPrefsForKey('finishBeep') == 1) {
             device.beep();
-            device.vibrate();
+          }
+          device.vibrate();
         }
 		});
 
