@@ -96,7 +96,9 @@
 		  $('longBreakValue').innerHTML = e.value;
 		});
 
-    pomoVal = setPomoVal();
+    $('pomodoroValue').innerHTML = getStoredValues(DBFields.POMODORO_MINUTES);
+    $('shortBreakValue').innerHTML = getStoredValues(DBFields.SHORT_BREAK_MINUTES);
+    $('longBreakValue').innerHTML = getStoredValues(DBFields.LONG_BREAK_MINUTES);
   </script>
 
 
