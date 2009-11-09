@@ -22,7 +22,7 @@ var PomodoroTimer = Class.create({
 				}
 
 				, timeExpired: function (minutesRemaining, secondsRemaining) {
-						if (minutesRemaining < 0 || secondsRemaining < 0) {
+						if (minutesRemaining <= 0 || secondsRemaining <= 0) {
 								return true;
 						}
 						else {

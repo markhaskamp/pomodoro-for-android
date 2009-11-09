@@ -1,4 +1,4 @@
 *.*~
 *.log
+build/android/bin/assets/Resources/index.html
 build/
-build/*

@@ -35,6 +35,14 @@ var TestDataAccess = Class.create({
 
 		});
 
+var DBFields = {
+    POMODORO_MINUTES:     'pomodoroMinutes'
+    ,SHORT_BREAK_MINUTES: 'shortBreakMinutes'
+    ,LONG_BREAK_MINUTES:  'longBreakMinutes'
+    ,FINISH_BEEP:         'finishBeep'
+    ,VIBRATE_BEEP:        'vibrateBeep'
+}
+
 var PomodoroData = Class.create({
 	initialize: function() {
 						this.logger = LoggerFactory.create();
@@ -71,7 +79,7 @@ var PomodoroData = Class.create({
 
 								var rsPrefs = db.execute("SELECT pomodoroMinutes, shortBreakMinutes, longBreakMinutes, finishFlash, finishBeep, finishVibrate FROM pomodoro");
 								if (rsPrefs.isValidRow()) {
-										this.userPrefs.set('pomodoroMinutes', rsPrefs.fieldByName("pomodoroMinutes"));
+										this.userPrefs.set('pomodoroMinutes', rsPrefs.fieldByName(DBFields.POMODORO_MINUTES));
 										this.userPrefs.set('shortBreakMinutes', rsPrefs.fieldByName("shortBreakMinutes"));
 										this.userPrefs.set('longBreakMinutes', rsPrefs.fieldByName("longBreakMinutes"));
 										this.userPrefs.set('finishFlash', rsPrefs.fieldByName("finishFlash"));
@@ -126,11 +134,21 @@ var PomodoroData = Class.create({
 						db.close();
 				}
 
-	,setBeepFlag: function(value) {
-						db = Titanium.Database.open('pomodoroDB');
-						dbValue = (value ? 1 : 0);
-						db.execute("UPDATE pomodoro SET finishBeep=" + dbValue);
-						db.close();
+	,setBeepFlag: function(switchValue) {
+            this.logger.log('debug', 'DataAccess.js. setBeepFlag(). Enter');
+            this.logger.log('debug', 'switchValue: [' + switchValue + ']');
+            try {
+                db = Titanium.Database.open('pomodoroDB');
+                dbValue = (switchValue ? 1 : 0);
+                var sql = "UPDATE pomodoro SET finishBeep=" + dbValue;
+                this.logger.log("DataAccess. setBeepFlag(). sql: " + sql);
+                db.execute(sql);
+                db.close();
+            }
+            catch(exc) {
+                this.logger.log('debug', '===> ERROR: ' + exc);
+            }
+            this.logger.log('debug', 'DataAccess.js. setBeepFlag(). Exit');
 				}
 						
 	,setVibrateFlag: function(value) {
@@ -171,7 +189,7 @@ var PomodoroData = Class.create({
 				}
 
 	,getPomodoroMinutes: function() {
-						return this.getDBValue('pomodoroMinutes');
+						return this.getDBValue(DBFields.POMODORO_MINUTES);
 				}
 
 
