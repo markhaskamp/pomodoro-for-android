@@ -35,9 +35,9 @@ var PomodoroTimer = Class.create({
 		      if (pomodoroData.getUserPrefsForKey(DBFields.FINISH_BEEP) == 1) {
             device.beep();
           }
-		      if (pomodoroData.getUserPrefsForKey(DBFields.FINISH_VIBRATE) == 1) {
+		      // if (pomodoroData.getUserPrefsForKey(DBFields.FINISH_VIBRATE) == 1) {
               device.vibrate();
-          }
+          // }
         }
 		});
 
