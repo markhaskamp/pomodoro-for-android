@@ -34,10 +34,8 @@ h1,h2
   display: inline-block;
   font-size: 2.0em;
   font-weight: bold;
-  height: 1.5em;
-  width: 2.0em;
-  vertical-align: middle;
-  padding-top: 0.5em;
+  height: 1.25em;
+  width: 1.6em;
 
   border-top: solid 1px #cc0000;
   border-left: solid 1px #cc0000;
@@ -55,10 +53,8 @@ h1,h2
   display: inline-block;
   font-size: 2.0em;
   font-weight: bold;
-  height: 1.5em;
-  width: 2.0em;
-  vertical-align: middle;
-  padding-top: 0.5em;
+  height: 1.25em;
+  width: 1.6em;
 
   border-top: solid 1px #00cc00;
   border-left: solid 1px #00cc00;

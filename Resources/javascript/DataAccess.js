@@ -135,26 +135,28 @@ var PomodoroData = Class.create({
 				}
 
 	,setBeepFlag: function(switchValue) {
-            this.logger.log('debug', 'DataAccess.js. setBeepFlag(). Enter');
-            this.logger.log('debug', 'switchValue: [' + switchValue + ']');
             try {
                 db = Titanium.Database.open('pomodoroDB');
                 dbValue = (switchValue ? 1 : 0);
                 var sql = "UPDATE pomodoro SET finishBeep=" + dbValue;
-                this.logger.log("DataAccess. setBeepFlag(). sql: " + sql);
                 db.execute(sql);
                 db.close();
             }
             catch(exc) {
                 this.logger.log('debug', '===> ERROR: ' + exc);
             }
-            this.logger.log('debug', 'DataAccess.js. setBeepFlag(). Exit');
 				}
 						
 	,setVibrateFlag: function(value) {
-						db = Titanium.Database.open('pomodoroDB');
-						db.execute("UPDATE pomodoro SET finishVibrate=" + value);
-						db.close();
+            try {
+                db = Titanium.Database.open('pomodoroDB');
+                dbValue = (switchValue ? 1 : 0);
+                db.execute("UPDATE pomodoro SET finishVibrate=" + dbValue);
+                db.close();
+            }
+            catch(exc) {
+                this.logger.log('debug', '===> ERROR: ' + exc);
+            }
 				}
 						
 	,setFlashFlag: function(value) {
