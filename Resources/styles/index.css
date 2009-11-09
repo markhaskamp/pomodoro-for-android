@@ -31,6 +31,14 @@ h1,h2
   padding: 2px;
   text-align: center;
 
+  display: inline-block;
+  font-size: 2.0em;
+  font-weight: bold;
+  height: 1.5em;
+  width: 2.0em;
+  vertical-align: middle;
+  padding-top: 0.5em;
+
   border-top: solid 1px #cc0000;
   border-left: solid 1px #cc0000;
   border-right: solid 1px #330000;
@@ -43,6 +51,14 @@ h1,h2
   background-color: #009900;
   padding: 2px;
   text-align: center;
+
+  display: inline-block;
+  font-size: 2.0em;
+  font-weight: bold;
+  height: 1.5em;
+  width: 2.0em;
+  vertical-align: middle;
+  padding-top: 0.5em;
 
   border-top: solid 1px #00cc00;
   border-left: solid 1px #00cc00;
