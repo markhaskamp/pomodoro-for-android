@@ -1,4 +1,5 @@
 *.*~
 *.log
 build/android/bin/assets/Resources/index.html
+build/android/res/drawable/appicon.png
 build/
