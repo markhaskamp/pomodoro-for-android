@@ -2,8 +2,8 @@
 <ti:app xmlns:ti="http://ti.appcelerator.org">
 <id>com.markhaskamp.pomodoro</id>
 <name>pomodoroAlaMark</name>
-<version>0.9.1</version>
-<icon>appicon.png</icon>
+<version>1.0</version>
+<icon>/home/mark/dev/titanium/projects/pomodoroAlaMark/Resources/android/pomodoro.png</icon>
 	<persistent-wifi>false</persistent-wifi>
 	<prerendered-icon>false</prerendered-icon>
 	<statusbar-style>opaque</statusbar-style>
