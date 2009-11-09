@@ -90,4 +90,18 @@ h1,h2
   margin-left: 2.0em;
   margin-top: 1.0em;
   font-size: 0.75em;
+
+  background-color: #bbbbbb;
+  color: black;
+
+  width: 5.0em;
+  height: 2.0em;
+  text-align: center;
+  padding-top: 0.5em;
+
+  border-left: solid 1px white;
+  border-top: solid 1px white;
+  border-right: solid 1px black;
+  border-bottom: solid 1px black;
+
 }
