@@ -40,7 +40,7 @@ var DBFields = {
     ,SHORT_BREAK_MINUTES: 'shortBreakMinutes'
     ,LONG_BREAK_MINUTES:  'longBreakMinutes'
     ,FINISH_BEEP:         'finishBeep'
-    ,VIBRATE_BEEP:        'vibrateBeep'
+    ,FINISH_VIBRATE:      'finishVibrate'
 }
 
 var PomodoroData = Class.create({

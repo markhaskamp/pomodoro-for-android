@@ -32,10 +32,12 @@ var PomodoroTimer = Class.create({
 
         ,reactToTimerStopped: function() {
 
-		      if (pomodoroData.getUserPrefsForKey('finishBeep') == 1) {
+		      if (pomodoroData.getUserPrefsForKey(DBFields.FINISH_BEEP) == 1) {
             device.beep();
           }
-          device.vibrate();
+		      if (pomodoroData.getUserPrefsForKey(DBFields.FINISH_VIBRATE) == 1) {
+              device.vibrate();
+          }
         }
 		});
 
