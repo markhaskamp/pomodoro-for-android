@@ -1,3 +1,4 @@
+
 var PomodoroTimer = Class.create({
 				initialize: function(minutes, seconds) {
 						this.startNewGoal(minutes, seconds)
@@ -51,7 +52,16 @@ var PomodoroDisplay = Class.create({
 						return 'stop';
 				}
 
-        , getLogDisplay: function(timerType, startTime) {
+        , getLogDisplayForFirstLine: function(j) {
+            var hLogDisplay = $H();
+            hLogDisplay.set('pomodoroMinutes', 'Pomodoro');
+            hLogDisplay.set('shortBreakMinutes', 'Short Break');
+            hLogDisplay.set('longBreakMinutes', 'Long Break');
+
+            return new Template("<div class='logEntry'><span class='logEntryTimeFirstLine'>#{startTime}</span><span class='logEntryMessageFirstLine'>#{message}</span></div>").evaluate({ "startTime": j.curTime, "message": hLogDisplay.get(j.timerType) });
+        }
+
+        , getLogDisplay: function(j) {
             var hLogDisplay = $H();
             hLogDisplay.set('pomodoroMinutes', 'Pomodoro');
             hLogDisplay.set('shortBreakMinutes', 'Short Break');
@@ -59,10 +69,7 @@ var PomodoroDisplay = Class.create({
 
             var logTemplate = new Template("<div class='logEntry'><span class='logEntryTime'>#{startTime}</span><span class='logEntryMessage'>#{message}</span></div>");
 
-            return logTemplate.evaluate( { 
-                        startTime: startTime,
-                        message: hLogDisplay.get(timerType)
-                            } );
+            return logTemplate.evaluate( { "startTime": j.curTime, "message": hLogDisplay.get(j.timerType) });
         }
 
         , getCurrentHoursAndMinutes: function() {
@@ -114,9 +121,18 @@ function setStylesForClickedButton(ele) {
 }
 
 function addStartToTimerLog(timerType) {
-    var newLine = pomodoroDisplay.getLogDisplay(timerType, pomodoroDisplay.getCurrentHoursAndMinutes());
-    var currentHtml = $('timerLog').innerHTML;
-    $('timerLog').innerHTML = newLine + currentHtml;
+    curTime = pomodoroDisplay.getCurrentHoursAndMinutes();
+    logEntries.unshift({ "timerType": timerType, "curTime": curTime });
+    
+    var htmlStr = pomodoroDisplay.getLogDisplayForFirstLine(logEntries[0]);
+    // var currentHtml = $('timerLog').innerHTML;
+    // $('timerLog').innerHTML = newLine + currentHtml;
+
+    for (i=1; i<logEntries.size(); i++) {
+        htmlStr += pomodoroDisplay.getLogDisplay(logEntries[i]);
+    }
+
+    $('timerLog').innerHTML = htmlStr;
 
     $('logHeadingClear').show();
 }
@@ -127,6 +143,7 @@ var pomodoroData;
 var device;
 var logger;
 
+var logEntries = $A();
 
 document.observe('dom:loaded', function() {
 				logger = LoggerFactory.create();

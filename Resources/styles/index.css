@@ -82,6 +82,17 @@ h1,h2
 .logEntryMessage {
 }
 
+.logEntryTimeFirstLine {
+  padding-left: 3px;
+  padding-right: 3px;
+  margin-right: 5px;
+  color: white;
+}
+
+.logEntryMessageFirstLine {
+    color: white;
+}
+
 .logHeadingClear {
   margin-left: 2.0em;
   margin-top: 1.0em;
