@@ -79,15 +79,15 @@
 	<div class="minutesSlider" id="longBreakMinutesCtl"></div>
   <div style="clear; left" />
   
-  <div id="buttonContainer">
-	<div class="buttons" id="btnSavePreferences">Save</div>
-	<div class="buttons" id="btnResetPreferences">Reset</div>
+  <div style="margin-top: 1.33em">
+    <span id="saveCtl" style="margin-left: 5.0em; display: block;"></span>
+    <span id="resetCtl" style="margin-left: 12.0em; display: block;"></span>
   </div>
-
+  
 
 	<script>
-		$('btnSavePreferences').observe('click', savePreferences.bindAsEventListener(this));
-		$('btnResetPreferences').observe('click', resetPreferences.bindAsEventListener(this));
+		// $('btnSavePreferences').observe('click', savePreferences.bindAsEventListener(this));
+		// $('btnResetPreferences').observe('click', resetPreferences.bindAsEventListener(this));
 
 		slPomodoro.addEventListener('change', function(e) {
 		  $('pomodoroValue').innerHTML = e.value;
@@ -100,6 +100,10 @@
 		slLongBreak.addEventListener('change', function(e) {
 		  $('longBreakValue').innerHTML = e.value;
 		});
+
+    btnSave.addEventListener('click', savePreferences);
+    btnReset.addEventListener('click', resetPreferences);
+   
 
     $('pomodoroValue').innerHTML = getStoredValues(DBFields.POMODORO_MINUTES);
     $('shortBreakValue').innerHTML = getStoredValues(DBFields.SHORT_BREAK_MINUTES);

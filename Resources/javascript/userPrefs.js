@@ -45,7 +45,6 @@ tfHash.set(0, false);
 tfHash.set(1, true);
 
 var switchBeep = Titanium.UI.createSwitch({id:'switchBeep', value:tfHash.get(getStoredValues('finishBeep')) });
-// var switchVibrate = Titanium.UI.createSwitch({id:'switchVibrate', value:tfHash.get(getStoredValues('finishBeep')) });
 
 var slPomodoro = Titanium.UI.createSlider({ id:'pomodoroMinutesCtl' 
                                             ,min:20, max:35
@@ -64,5 +63,17 @@ var slLongBreak = Titanium.UI.createSlider({ id:'longBreakMinutesCtl'
                                              ,width: 225
                                              ,value: getStoredValues('longBreakMinutes')
                                              });
+
+var btnSave = Titanium.UI.createButton({ id:'saveCtl'
+                                         ,height: 45
+                                         ,width: 75
+                                         ,title: 'Save'
+                                      });
+
+var btnReset = Titanium.UI.createButton({ id:'resetCtl'
+                                         ,height: 45
+                                         ,width: 75
+                                         ,title: 'Reset'
+                                      });
 
 
