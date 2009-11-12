@@ -98,6 +98,7 @@ function timeIntervalEvent(pe) {
 
 function clearLog(e) {
     $('timerLog').innerHTML = '';
+	  logEntries.clear();
     $('logHeadingClear').hide();
 }
 
