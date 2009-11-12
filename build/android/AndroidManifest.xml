@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="com.markhaskamp.pomodoro"
-      android:versionCode="3"
+      android:versionCode="4"
       android:versionName="1.1"
 >
 	<uses-sdk android:minSdkVersion="3" />
@@ -44,7 +44,7 @@
   	<!-- <uses-permission android:name="android.permission.INTERNET"/> -->
   	<!-- required to check network connectivity -->
   	<!-- <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/> -->
-  	<!-- <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/> -->
+  	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
   	<!-- required for geolocation -->
 	<!-- 
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
